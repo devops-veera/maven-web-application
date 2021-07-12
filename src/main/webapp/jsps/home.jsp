@@ -17,11 +17,11 @@
 		<img src="images/mithunlogo.jpg" alt="" width="100">
 	</span>
 	<span style="font-weight: bold;">
-		Veera Software Solutions, 
+		Veera c Software Solutions, 
 		Martha Halli,
 		Bangalore,
 		+91-9494321484,
-		devopstrainingbr@gmail.com
+		veera@gmail.com
 		<br>
 		<a href="mailto:devopstrainingblr@gmail.com">Mail to Mithun Technologies</a>
 	</span>
