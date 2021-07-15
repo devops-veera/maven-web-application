@@ -105,7 +105,7 @@
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://13.233.15.15:8081/mithuntechnologies/repository/ceipal-snapshot/</url>
+	      <url>http://65.1.3.4:8081/mithuntechnologies/repository/ceipal-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
