@@ -1,0 +1,58 @@
+pipeline{
+
+agent any
+triggers{
+    pollSCM('* * * * *')
+   // pipelineTriggers([githubPush()])
+   //pipelineTriggers([cron('* * * * *')])
+}
+options{
+    timestamps()
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '5'))
+}
+tools{
+maven "Maven3.8.1"
+}
+   
+stages{
+
+stage('CheckoutCode'){
+steps{
+git branch: 'development', credentialsId: '703ef717-ff7a-473c-af39-b3b38b45268d', url: 'https://github.com/devops-veera/maven-web-application.git'
+}
+}
+ stage('buid'){
+ steps{
+ sh "mvn clean package"
+ }
+ }
+ stage('executeSonarQube'){
+ steps{
+ sh "mvn clean sonar:sonar"
+ }
+ }
+ stage('uploadArtifactInto Nexus'){
+ steps{
+ sh "mvn clean deploy"
+ }
+ }
+ stage('deployCodetoTomcat'){
+ steps{
+ sshagent(['7d500bbe-11b9-47b5-b605-655f1d3b5dd5']) {
+    sh "scp target/maven-web-application.war ec2-user@13.232.63.134:/opt/tomcat9/webapps"
+ }
+ }
+ }
+}//stages closing
+
+post{
+    
+    success{
+        emailext body: 'Veera', subject: 'Bild is over', to: 'raghuraz80@gmail.com'
+    }
+   failure{
+       emailext body: 'Veera', subject: 'Bild is failed', to: 'raghuraz80@gmail.com'
+   }
+}
+
+}//pipeline closing
