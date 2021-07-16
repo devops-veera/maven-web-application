@@ -26,7 +26,7 @@ git branch: 'development', credentialsId: '703ef717-ff7a-473c-af39-b3b38b45268d'
  sh "mvn clean package"
  }
  }
-/* stage('executeSonarQube'){
+stage('executeSonarQube'){
  steps{
  sh "mvn clean sonar:sonar"
  }
@@ -43,7 +43,7 @@ git branch: 'development', credentialsId: '703ef717-ff7a-473c-af39-b3b38b45268d'
  }
  }
  }
- */
+
 }//stages closing
 
 post{
